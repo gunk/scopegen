@@ -152,8 +152,9 @@ func parseMethods(securitySchemeName string, file *descriptorpb.FileDescriptorPr
 
 // ParseFile parsed the given proto file to extract its OAuth2 scopes information.
 func ParseFile(file *descriptorpb.FileDescriptorProto) (*File, error) {
-	f := &File{
-		Package: file.GetPackage(),
+	f := &File{Package: file.GetPackage()}
+	if _, pkg, ok := goPackageOption(file); ok {
+		f.Package = pkg
 	}
 	oauth2SecuritySchemeName, scopes, err := parseScopes(file)
 	if err != nil {

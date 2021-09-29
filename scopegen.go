@@ -101,9 +101,9 @@ func (s *scopePlugin) Generate(req *pluginpb.CodeGeneratorRequest) (*pluginpb.Co
 			if err = generate.Go(buf, parsed, outputVersion); err != nil {
 				return nil, fmt.Errorf("failed to generate scopes: lang=%s err=%s", lang, err.Error())
 			}
-			formatted, err := format.Source(buf.Bytes(), format.Options{LangVersion: "1.14"})
+			formatted, err := format.Source(buf.Bytes(), format.Options{LangVersion: "1.16"})
 			if err != nil {
-				return nil, fmt.Errorf("failed to generate scopes: lang=%s err=%s", lang, err.Error())
+				return nil, fmt.Errorf("failed to format generated scopes: lang=%s err=%s", lang, err.Error())
 			}
 			res = string(formatted)
 		default:
