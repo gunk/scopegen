@@ -16,4 +16,4 @@ jobs:
     - name: Build
       run: go build -v ./...
     - name: Test
-      run: go test -v ./... && cd test && go test -v
+      run: cd test && go test -v
